@@ -188,8 +188,8 @@ print(last) #10
 
 # Read line of a file into a list
 
-with open("myfile.txt") as f:
-    lines = [line.strip() for line in f]
+# with open("myfile.txt") as f:                 --> commented so no error "file not found  "
+#     lines = [line.strip() for line in f]      --> commented so no error "file not found  "
 
 # Dictionary
 
