@@ -27,10 +27,10 @@ print(hex(512))         # '0x200' - hexadecimal format
 
 # Converting Strings to Numbers
 
-age = input("How old are you? ")
-age = int(age)
-pi = input("What is the value of pi? ")
-pi = float(pi)
+# age = input("How old are you? ")          --> commented so no input required on Run
+# age = int(age)                            --> commented so no input required on Run
+# pi = input("What is the value of pi? ")   --> commented so no input required on Run
+# pi = float(pi)                            --> commented so no input required on Run
 
 # Strings
 
@@ -102,7 +102,7 @@ print(p) # True
 print(bool(True))
 print(bool(False))
 
-# all of the below evaluate to False. Everything else will evaluate to True in Python
+# all the below evaluate to False. Everything else will evaluate to True in Python
 
 print(bool(None))
 print(bool(False))
@@ -150,6 +150,142 @@ print(''.join(['Hello', 'There']))              # 'Hello There'
 
 # Copy a list
 
+basket = ['apples', 'pears', 'oranges']
+new_basket = basket.copy()
+new_basket2 = basket[:]
+print(new_basket)
+print(new_basket2)
+
+# Remove from List
+
+print([1,2,3].pop())         # 3 --> mutates original list, default index in the pop method is -1 (the last item)
+print([1,2,3].pop(1))        # 2 --> mutates original list
+print([1,2,3].remove(2))     # None --> [1,3] Removes first occurrence of item or raises ValueError.
+print([1,2,3].clear())       # None --> mutates original list and removes all items: []
+del [1,2,3][0]               #
+
+# Ordering
+
+print([1,2,5,3].sort())                 # None --> Mutates list to [1, 2, 3, 5]
+print([1,2,5,3].sort(reverse=True))     # None --> Mutates list to [5, 3, 2, 1]
+print([1,2,5,3].reverse())              # None --> Mutates list to [3, 5, 2, 1]
+print(sorted([1,2,5,3]))                # [1, 2, 3, 5] --> new list created
+print(list(reversed([1,2,5,3])))        # [3, 5, 2, 1] --> reversed() returns an iterator
+
+# Useful operations
+
+print(1 in [1,2,5,3])       # True
+print(min([1,2,3,4,5]))     # 1
+print(max([1,2,3,4,5]))     # 5
+print(sum([1,2,3,4,5]))     # 15
+
+# Get First and Last element of a list
+
+mList = [63, 21, 30, 14, 35, 26, 77, 18, 49, 10]
+first, *x, last = mList
+print(first) #63
+print(last) #10
+
+# Read line of a file into a list
+
+with open("myfile.txt") as f:
+    lines = [line.strip() for line in f]
+
+# Dictionary
+
+my_dict = {'name': 'John Doe', 'age': 25, 'magic_power': False}
+print(my_dict)
+
+print(my_dict['name'])          # John Doe
+print(len(my_dict))             # 3
+print(list(my_dict.keys()))     # ['name', 'age', 'magic_power']
+print(list(my_dict.values()))   # ['John Doe', 25, False]
+print(list(my_dict.items()))    # [('name', 'John Doe'), ('age', 25), ('magic_power', False)]
+
+my_dict['favourite_snack'] = 'Grapes' # {'name': 'John Doe', 'age': 25, 'magic_power': False, 'favourite_snack': 'Grapes'}
+print(my_dict)
+
+print(my_dict.get('age'))                    # 25 --> Returns None if key does not exist.
+print(my_dict.get('ages', 0))    # 0 --> Returns default (2nd param) if key is not found
+
+#Remove key
+
+del my_dict['name']
+print(my_dict)
+
+my_dict.pop('name', None)
+print(my_dict)
+
+# Tuple
+
+my_tuple = ('apple', 'grapes', 'mango', 'grapes')
+print(my_tuple)
+
+apple, grapes_1, mango, grapes_2 = my_tuple # Tuple unpacking
+print(my_tuple)
+
+print(len(my_tuple))                # 4
+print(my_tuple[2])                  # mango
+print(my_tuple[-1])                 # 'grapes'
+
+# Immutability
+
+# my_tuple[1] = 'donuts'            # TypeError
+# my_tuple.append('candy')          # AttributeError
+
+# Methods
+print(my_tuple.index('grapes'))     # 1
+print(my_tuple.count('grapes'))     # 2
+
+# Set
+
+my_set = set()
+my_set.add(1)             # {1}
+my_set.add(100)           # {1, 100}
+my_set.add(100)           # {1, 100} --> no duplicates!
+print(my_set)
+
+new_list = [1,2,3,3,3,4,4,5,6,1]
+set(new_list)             # {1, 2, 3, 4, 5, 6}
+print(new_list)
+
+my_set.remove(100)        # {1} --> Raises KeyError if element not found
+print(my_set)
+my_set.discard(100)
+print(my_set)             # {1} --> Doesn't raise an error if element not found
+my_set.clear()            # {}
+print(my_set)
+new_set = {1,2,3}.copy()  # {1,2,3}
+print(my_set)
+
+set1 = {1,2,3}
+print(set1)
+set2 = {3,4,5}
+print(set2)
+
+set3 = set1.union(set2)                 # {1,2,3,4,5}
+print(set3)
+set4 = set1.intersection(set2)          # {3}
+print(set4)
+set5 = set1.difference(set2)            # {1, 2}
+print(set5)
+set6 = set1.symmetric_difference(set2)  # {1, 2, 4, 5}
+print(set6)
+
+print(set1.issubset(set2))      # False
+print(set1.issuperset(set2))    # False
+print(set1.isdisjoint(set2))    # False --> return True if two sets have a null intersection.
+
+# Frozenset
+
+# hashable --> it can be used as a key in a dictionary or as an element in a set.
+# <frozenset> = frozenset(<collection>) --> Errors
+
+# None
+
+print(type(None))
+a = None
+print(a)
 
 
 
