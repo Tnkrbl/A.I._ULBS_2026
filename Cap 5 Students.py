@@ -23,12 +23,12 @@ describe = data.describe()
 categorice = data.select_dtypes(exclude=['number']).columns.tolist()
 numerice = data.select_dtypes(include=['number']).columns.tolist()
 
-print("Variabile categorice:", categorice)
-print("Variabile numerice:", numerice)
+# print("Variabile categorice:", categorice)
+# print("Variabile numerice:", numerice)
 
 for col in categorice:
-    print(f"\n{col}: {data[col].nunique()} valori unice")
-    print(f"  -> {data[col].unique()}")
+   print(f"\n{col}: {data[col].nunique()} valori unice")
+   print(f"  -> {data[col].unique()}")
 
 # CURATAREA DATELOR
 
@@ -41,7 +41,7 @@ for col in numerice:
     if data[col].isnull().sum() > 0:
         mediana = data[col].median()
         data[col] = data[col].fillna(mediana)
-        print(f"[NUMERIC] '{col}' → înlocuit cu mediana: {mediana}")
+        print(f"[Numeric] '{col}' → înlocuit cu mediana: {mediana}")
 
 for col in categorice:
     if data[col].isnull().sum() > 0:
